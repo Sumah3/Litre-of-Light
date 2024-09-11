@@ -1,0 +1,46 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP8266 Web Server</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; }
+    .container { margin-top: 50px; }
+    .button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ESP8266 Web Server</h1>
+    <p>LDR Value: <span id="ldrValue">0</span></p>
+    <button class="button" onclick="toggleLED()">Toggle LED</button>
+  </div>
+
+  <script>
+    function fetchLDRValue() {
+      fetch('/ldr')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('ldrValue').innerText = data;
+        });
+    }
+
+    function toggleLED() {
+      fetch('/toggleLED')
+        .then(response => response.text())
+        .then(data => {
+          alert(data);
+        });
+    }
+
+    setInterval(fetchLDRValue, 1000); // Fetch LDR value every second
+  </script>
+</body>
+</html>
+
+
