@@ -5,6 +5,7 @@
 }
 
 <!DOCTYPE html>
+
 <html>
 <head>
   <title>ESP8266 Web Server</title>
@@ -30,6 +31,7 @@
         });
     }
 
+
     function toggleLED() {
       fetch('/toggleLED')
         .then(response => response.text())
@@ -41,6 +43,7 @@
     setInterval(fetchLDRValue, 1000); // Fetch LDR value every second
   </script>
 </body>
+
 </html>
 
 
